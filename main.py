@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import List
 
 app = FastAPI(title="Simple REST API")
+port = int(os.environ.get("PORT", 8000))
 
 # ----- Model -----
 class Item(BaseModel):
@@ -40,3 +41,7 @@ def delete_item(item_id: int):
     global items_db
     items_db = [item for item in items_db if item.id != item_id]
     return {"message": "Item deleted"}
+    
+if __name__ == "__main__":
+    print(f"Example app listening on port {port}")
+    uvicorn.run(app, host="0.0.0.0", port=port)
