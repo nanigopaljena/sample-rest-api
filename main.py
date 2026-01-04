@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
+import os
+import uvicorn
 
 app = FastAPI(title="Simple REST API")
 port = int(os.environ.get("PORT", 8000))
